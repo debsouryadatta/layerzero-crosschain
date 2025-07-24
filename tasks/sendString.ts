@@ -52,7 +52,7 @@ async function getBlockExplorerLink(networkName: string, txHash: string): Promis
     return explorer ? `${explorer}/tx/${txHash}` : undefined
 }
 
-task('lz:oapp:send', 'Sends a string cross‐chain using MyOApp contract')
+task('lz:oapp:send', 'Sends a string cross‐chain using SimpleTokenCrossChainMint contract')
     .addParam('dstEid', 'Destination endpoint ID', undefined, types.int)
     .addParam('string', 'String to send', undefined, types.string)
     .addOptionalParam('options', 'Execution options (hex string)', '0x', types.string)
@@ -65,18 +65,18 @@ task('lz:oapp:send', 'Sends a string cross‐chain using MyOApp contract')
         const [signer] = await hre.ethers.getSigners()
         logger.info(`Using signer: ${signer.address}`)
 
-        // Get the deployed MyOApp contract
-        let myOAppContract
+        // Get the deployed SimpleTokenCrossChainMint contract
+        let SimpleTokenCrossChainMintContract
         let contractAddress: string
         try {
-            const myOAppDeployment = await hre.deployments.get('MyOApp')
-            contractAddress = myOAppDeployment.address
-            myOAppContract = await hre.ethers.getContractAt('MyOApp', contractAddress, signer)
-            logger.info(`MyOApp contract found at: ${contractAddress}`)
+            const SimpleTokenCrossChainMintDeployment = await hre.deployments.get('SimpleTokenCrossChainMint')
+            contractAddress = SimpleTokenCrossChainMintDeployment.address
+            SimpleTokenCrossChainMintContract = await hre.ethers.getContractAt('SimpleTokenCrossChainMint', contractAddress, signer)
+            logger.info(`SimpleTokenCrossChainMint contract found at: ${contractAddress}`)
         } catch (error) {
             DebugLogger.printErrorAndFixSuggestion(
                 KnownErrors.ERROR_GETTING_DEPLOYMENT,
-                `Failed to get MyOApp deployment on network: ${hre.network.name}`
+                `Failed to get SimpleTokenCrossChainMint deployment on network: ${hre.network.name}`
             )
             throw error
         }
@@ -89,7 +89,7 @@ task('lz:oapp:send', 'Sends a string cross‐chain using MyOApp contract')
         logger.info('Quoting gas cost for the send transaction...')
         let messagingFee
         try {
-            messagingFee = await myOAppContract.quoteSendString(
+            messagingFee = await SimpleTokenCrossChainMintContract.quoteSendString(
                 args.dstEid,
                 args.string,
                 options,
@@ -109,7 +109,7 @@ task('lz:oapp:send', 'Sends a string cross‐chain using MyOApp contract')
         logger.info('Sending the string transaction...')
         let tx: ContractTransaction
         try {
-            tx = await myOAppContract.sendString(args.dstEid, args.string, options, {
+            tx = await SimpleTokenCrossChainMintContract.sendString(args.dstEid, args.string, options, {
                 value: messagingFee.nativeFee, // Pay the native fee
             })
             logger.info(`  Transaction hash: ${tx.hash}`)

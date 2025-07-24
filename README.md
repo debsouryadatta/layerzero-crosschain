@@ -98,7 +98,7 @@ pnpm compile:hardhat
 To deploy the OApp contracts to your desired blockchains, run the following command:
 
 ```bash
-pnpm hardhat lz:deploy --tags MyOApp
+pnpm hardhat lz:deploy --tags SimpleTokenCrossChainMint
 ```
 
 Select all the chains you want to deploy the OApp to.
@@ -310,3 +310,9 @@ pnpm dlx @layerzerolabs/verify-contract -n <NETWORK_NAME> -u <API_URL> -k <API_K
 ## Troubleshooting
 
 Refer to [Debugging Messages](https://docs.layerzero.network/v2/developers/evm/troubleshooting/debugging-messages) or [Error Codes & Handling](https://docs.layerzero.network/v2/developers/evm/troubleshooting/error-messages).
+
+
+### Steps:
+1. `npx create-lz-oapp@latest`
+2. change contract name everywhere, set up cross chain for base and optimism
+3. `npx hardhat test`, `npx hardhat lz:deploy`

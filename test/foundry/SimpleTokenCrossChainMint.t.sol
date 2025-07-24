@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.20;
 
-// MyOApp imports
-import { MyOApp, MessagingFee } from "../../contracts/MyOApp.sol";
+// SimpleTokenCrossChainMint imports
+import { SimpleTokenCrossChainMint, MessagingFee } from "../../contracts/SimpleTokenCrossChainMint.sol";
 
 // OApp imports
 import { IOAppOptionsType3, EnforcedOptionParam } from "@layerzerolabs/oapp-evm/contracts/oapp/libs/OAppOptionsType3.sol";
@@ -17,14 +17,14 @@ import "forge-std/console.sol";
 // DevTools imports
 import { TestHelperOz5 } from "@layerzerolabs/test-devtools-evm-foundry/contracts/TestHelperOz5.sol";
 
-contract MyOAppTest is TestHelperOz5 {
+contract SimpleTokenCrossChainMintTest is TestHelperOz5 {
     using OptionsBuilder for bytes;
 
     uint32 private aEid = 1;
     uint32 private bEid = 2;
 
-    MyOApp private aOApp;
-    MyOApp private bOApp;
+    SimpleTokenCrossChainMint private aOApp;
+    SimpleTokenCrossChainMint private bOApp;
 
     address private userA = address(0x1);
     address private userB = address(0x2);
@@ -37,9 +37,9 @@ contract MyOAppTest is TestHelperOz5 {
         super.setUp();
         setUpEndpoints(2, LibraryType.UltraLightNode);
 
-        aOApp = MyOApp(_deployOApp(type(MyOApp).creationCode, abi.encode(address(endpoints[aEid]), address(this))));
+        aOApp = SimpleTokenCrossChainMint(_deployOApp(type(SimpleTokenCrossChainMint).creationCode, abi.encode(address(endpoints[aEid]), address(this))));
 
-        bOApp = MyOApp(_deployOApp(type(MyOApp).creationCode, abi.encode(address(endpoints[bEid]), address(this))));
+        bOApp = SimpleTokenCrossChainMint(_deployOApp(type(SimpleTokenCrossChainMint).creationCode, abi.encode(address(endpoints[bEid]), address(this))));
 
         address[] memory oapps = new address[](2);
         oapps[0] = address(aOApp);

@@ -5,7 +5,7 @@ import { OApp, Origin, MessagingFee } from "@layerzerolabs/oapp-evm/contracts/oa
 import { OAppOptionsType3 } from "@layerzerolabs/oapp-evm/contracts/oapp/libs/OAppOptionsType3.sol";
 import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
 
-contract MyOApp is OApp, OAppOptionsType3 {
+contract SimpleTokenCrossChainMint is OApp, OAppOptionsType3 {
     /// @notice Last string received from any remote chain
     string public lastMessage;
 
