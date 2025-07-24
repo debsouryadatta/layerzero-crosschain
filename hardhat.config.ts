@@ -13,7 +13,8 @@ import { HardhatUserConfig, HttpNetworkAccountsUserConfig } from 'hardhat/types'
 
 import { EndpointId } from '@layerzerolabs/lz-definitions'
 
-import './tasks/sendString'
+// import './tasks/sendString'
+import './tasks/index'
 
 // Set your preferred authentication method
 //
