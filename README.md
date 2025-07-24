@@ -14,18 +14,6 @@
 
 ## Table of Contents
 
-- [Prerequisite Knowledge](#prerequisite-knowledge)
-- [Requirements](#requirements)
-- [Scaffold this example](#scaffold-this-example)
-- [Helper Tasks](#helper-tasks)
-- [Setup](#setup)
-- [Build](#build)
-  - [Compiling your contracts](#compiling-your-contracts)
-- [Deploy](#deploy)
-- [Enable Messaging](#enable-messaging)
-- [Sending Messages](#sending-messages)
-- [Next Steps](#next-steps)
-- [Production Deployment Checklist](#production-deployment-checklist)
 - [Appendix](#appendix)
   - [Running Tests](#running-tests)
   - [Adding other chains](#adding-other-chains)
@@ -33,6 +21,7 @@
   - [LayerZero Hardhat Helper Tasks](#layerzero-hardhat-helper-tasks)
   - [Contract Verification](#contract-verification)
   - [Troubleshooting](#troubleshooting)
+    - [Steps:](#steps)
 
 ## Prerequisite Knowledge
 
@@ -322,3 +311,4 @@ Refer to [Debugging Messages](https://docs.layerzero.network/v2/developers/evm/t
 7. `npx hardhat oapp:read --contract-a 0xa01dEB39a2827703544e1Cbb0DA77D5A57c57f6D --network-a base --contract-b 0xD83d4c95896c12C783017173267856f5e330A1CF --network-b optimism`
 8. change function names in the tasks of index.ts to match our current contract
 9. `npx hardhat oapp:send --contract-a 0xa01dEB39a2827703544e1Cbb0DA77D5A57c57f6D --network-a base --network-b optimism --message "SouryaTalks"`
+10. migrate older smart contract to layerzero v2, just changed the contract, constructor, and the main layerzero functions a bit

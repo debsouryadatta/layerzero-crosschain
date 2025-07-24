@@ -58,7 +58,9 @@
     "solhint": "^4.1.1",
     "solidity-bytes-utils": "^0.8.2",
     "ts-node": "^10.9.2",
-    "typescript": "^5.4.4"
+    "typescript": "^5.4.4",
+    "web3": "^4.16.0",
+    "winston": "^3.17.0"
   },
   "engines": {
     "node": ">=18.16.0"
